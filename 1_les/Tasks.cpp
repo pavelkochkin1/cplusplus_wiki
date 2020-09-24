@@ -5,15 +5,14 @@ using namespace std;
 int main()
 {
     //Третья задача
-    
-    // int n = 1;
-    // cin >> n;
-    // int factorial = 1;
-    // for(int i = 1; i <= n; i++)
-    // {
-    //     factorial *= i;
-    // }
-    // cout << factorial;
+    int n = 1;
+    cin >> n;
+    int factorial = 1;
+    for(int i = 1; i <= n; i++)
+    {
+        factorial *= i;
+    }
+    cout << factorial;
     
 
     //Четвертая задача

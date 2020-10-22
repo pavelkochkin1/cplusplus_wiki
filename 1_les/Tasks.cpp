@@ -5,14 +5,14 @@ using namespace std;
 int main()
 {
     //Третья задача
-    int n = 1;
-    cin >> n;
-    int factorial = 1;
-    for(int i = 1; i <= n; i++)
-    {
-        factorial *= i;
-    }
-    cout << factorial;
+    // int n = 1;
+    // cin >> n;
+    // int factorial = 1;
+    // for(int i = 1; i <= n; i++)
+    // {
+    //     factorial *= i;
+    // }
+    // cout << factorial;
     
 
     //Четвертая задача
@@ -89,14 +89,13 @@ int main()
     */
 
     //Восьмая задача
-    /*
-    int m = 0;
-    int n = 0;
+    int m;
+    int n;
     cin >> m;
     cin >> n;
     for(m; m <= n; m++)
     {
-        cout << m << ' ';
+        cout << m << ": ";
         for(int i = 2; i < m; i++)
         {
             if(m % i == 0)
@@ -106,32 +105,31 @@ int main()
         }
         cout << '\n';
     }
-    */ 
+     
 
    //Девятая задача
-   /*int x;
-   cin >> x;
-   int x1 = x / 100;
-   int x2 = x % 100;
-   cout << x1 + x2;
-   */
-
-   //Десятое задание
-   /*
-   int x1;
-   int x2;
-   cin >> x1;
-   cin >> x2;
-   for(int i = min(x1,x2); i != 0; i--)
-   {
-       if(x1 % i == 0 && x2 % i ==0)
-       {
-           cout << i;
-           break;
-       }
-   }
-   */
-
+//    int x;
+//    cin >> x;
+//    int x1 = x / 100;
+//    int x2 = x % 100;
+//    cout << x1 + x2;
    
 
+   //Десятое задание
+//    int x1;
+//    int x2;
+//    cout << "Enter first number: "; cin >> x1; cout << endl;
+//    cout << "Enter second number: "; cin >> x2; cout << endl;
+//    for(int i = (x1 < x2) ? (x1): (x2); i != 1; i--)
+//    {
+//        if(x1 % i == 0 && x2 % i == 0)
+//        {
+//            cout << i;
+//            break;
+//        }
+//    }
+   
+
+   
+  return 0;
 }  

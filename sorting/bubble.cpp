@@ -17,13 +17,19 @@ int main()
 }
 
 void bubble_sort(int a[], int n){
-    int i, j;
-    for(i = 0; i < n - 1; i++){
-        for(j = 0; j < n - i - 1; j++){
-            if(a[j] > a[j + 1]){
-                swap(a[j], a[j + 1]);
+    int j;
+    bool isSwap = true;
+    while(isSwap){    
+        // for(i = 0; i < n - 1; i++){
+            isSwap = false;
+
+            for(j = 0; j < n - 1; j++){
+                if(a[j] > a[j + 1]){
+                    isSwap = true;
+                    swap(a[j], a[j + 1]);
+                }
             }
-        }
+        //}    
     }
 }
 

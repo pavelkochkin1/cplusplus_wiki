@@ -5,10 +5,10 @@ using namespace std;
 int main(){
 
     //четвертая задача
-    int n, k = 0, max = 0, num = 0, index = 0; cout << "Enter N "; cin >> n;
+    int n, k = 0, max = 0, last = 0, first = 0; cout << "Enter N "; cin >> n;
     int a[n];
-    // num номер последнего элемента наибольшей последовательности
-    // index номер первого элемента последовательности
+    // last номер последнего элемента наибольшей последовательности
+    // first номер первого элемента последовательности
     // max длина наибольшей последовательности
 
     for(int i = 0; i < n; i++){
@@ -24,20 +24,15 @@ int main(){
         }
         if(k > max){
             max = k;
-            num = i + 1;
+            last = i + 1;
         }
     }
-    index = num - max + 1;
+    first = last - max + 1;
     cout << "Max: ";
-    for (int i = index; i < max + index; i++)
+    for (int i = first - 1; i < max + first; i++)
     {
         cout << a[i] << " ";
     }
-    cout << endl;
-    cout << "Num: " << num << endl;
-    cout << "Max: " << max << endl;
-    cout << "index: " << index << endl;
-
-
+    
     return 0;
 }

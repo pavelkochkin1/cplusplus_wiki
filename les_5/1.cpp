@@ -62,13 +62,13 @@ int main(){
 
     // Third task
     // int** A = new int* [n];
-    // creation(A, n, m);
+    // creating(A, n, m);
     // filling(A, n, m);
     // printing(A, n, m);
 
     // min = 0 ;sum = 0; index = 0;
 
-    // for(i = 0; i < n; i++){
+    // for(i = 0; i < m; i++){
     //     min += A[0][i];
     // }
 

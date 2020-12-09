@@ -1,35 +1,27 @@
 #include <iostream>
-
+#include <math.h>
 using namespace std;
 
+int fibonacci(int number){
+    if (number == 0)
+        return 0;
+    if (number == 1)
+        return 1;
+    return fibonacci(number-1) + fibonacci(number-2);
+}
 
+int* fibonacci_array(int n){
+    int* A = new int[n];
+    for(int i = 0; i < n; i++){
+        A[i] = fibonacci(i);
+    }
+    return A;
+}
 
 
 int main(){
-    int A[3][3] = {{1,2,3}, {4,5,6}, {7,8,9}};
-    int B[3][3] = {{1,3,9}, {2, 5, 1}, {6,3,2}};
-    int C[3][3] = {0};
-
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            cout << C[i][j] << " ";
-        }
-        cout << endl;
-    } 
-
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            for(int k = 0; k < 3; k++){
-                C[i][j] += A[i][k] * B[k][j];
-            }
-        }
-    } 
-
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            cout << C[i][j] << " ";
-        }
-        cout << endl;
-    } 
-
+    int* A = fibonacci_array(13);
+    for(int i = 0; i < 13; i++){
+        cout << A[i] << " ";
+    }
 }

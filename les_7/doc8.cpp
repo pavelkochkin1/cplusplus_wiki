@@ -17,7 +17,7 @@ int** Creation(int n, int m){
 }
 
 void Deletion(int** A,int n,int m){
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < m; i++){
         delete[] A[i];
     }
     delete[] A;
@@ -75,8 +75,8 @@ bool isPrime(int k){
     for(int i = 2; i <= sqrt(k); i++){
         if(k % i == 0){
             return false;
+            }
         }
-    }
     return true;
 }
 

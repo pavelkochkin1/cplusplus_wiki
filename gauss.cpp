@@ -54,11 +54,12 @@ void printing(double** A, int n){
 }
 
 double* gauss(double** M, int n){
-    // first stage
+    // init some variables
     double  temp; // temprorary variable
     int k, i, j;
     double* X = new double [n]; // array with answers
  
+    // first stage
     for (i = 0; i < n; i++)
     {
         double temp = M[i][i]; // choose numbers on the main diagonal

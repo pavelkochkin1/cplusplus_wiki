@@ -6,6 +6,7 @@
 using namespace std;
 
 int** Matr_Creation(int n){
+    // Matrix creation
     int** M = new int* [n];
     for(int i = 0; i < n; i++)
         M[i] = new int [n];
@@ -13,6 +14,7 @@ int** Matr_Creation(int n){
 }
 
 int* Ar_Creation(ifstream& fin, int n){
+    //array creation
     int* A = new int [n];
     for(int i = 0; i < n; i++){
         fin >> A[i];
@@ -21,6 +23,7 @@ int* Ar_Creation(ifstream& fin, int n){
 }
 
 void filling(ifstream& fin, int** M, int n){
+    // matrix filling
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
             fin >> M[i][j];
@@ -29,39 +32,45 @@ void filling(ifstream& fin, int** M, int n){
 }
 
 void out(ofstream& fout, double* A, int n){
+    // output of answers
     for(int i = 0; i < n; i++){
         fout << "X_" << i + 1 << " = " << A[i] << endl;
     }
 }
 
-void clearMemory(int** M, int n){
+void clearMemory_matr(int** M, int n){
+    // clearing of matrix memory
     for (int i = 0; i < n; i++) {
         delete[] M[i];
     }
     delete [] M;        
 }
 
-// Получение матрицы без i-й строки и j-го столбца
+void clearMemory_ar(int* A, int n){
+    // clearing of array memory
+    for (int i = 0; i < n; i++) {
+        delete [] A;
+    }       
+}
+
+// getting matrix without i line and j column
 void GetMatr(int** M, int** A, int i, int j, int m) {
-    int ki, kj, di = 0, dj;
-    for (ki = 0; ki < m - 1; ki++) { // проверка индекса строки
+    int ki, kj, di = 0, dj; // di - line offset, dj - column offset
+    for (ki = 0; ki < m - 1; ki++) { // checking line's index
         if (ki == i) di = 1;
         dj = 0;
-        for (kj = 0; kj < m - 1; kj++) { // проверка индекса столбца
+        for (kj = 0; kj < m - 1; kj++) { // checking column's index
             if (kj == j) dj = 1;
             A[ki][kj] = M[ki + di][kj + dj];
         }
     }
 }
-// Рекурсивное вычисление определителя
+// recursive calculation of the determinant.
 int Determinant(int** M, int n) {
     int i, j, d, k, m;
-    int** A;
-    A = new int*[n];
-    for (i = 0; i < n; i++)
-        A[i] = new int[n];
+    int** A = Matr_Creation(n - 1); // for GetMatr()
     j = 0; d = 0;
-    k = 1; //(-1) в степени i
+    k = 1; //(-1) to the i power
     m = n - 1;
     if (n < 1) cout << "Определитель вычислить невозможно!";
     if (n == 1) {
@@ -76,14 +85,18 @@ int Determinant(int** M, int n) {
         for (i = 0; i < n; i++) {
             GetMatr(M, A, i, 0, n);
             d += k * M[i][0] * Determinant(A, m);
-            k = -k; //контроль степени
+            k = -k; // power control
         }
     }
-    cout << d << endl;
+    cout << d << endl; // message in console for debug
+
+    clearMemory_matr(A, n);
+
     return(d);
 }
 
 int** Swap(int** M,int* A, int n, int i){
+    // func to replace a column of a matrix with another column
     int ai = 0;
     int** new_M = Matr_Creation(n);
     for(int j = 0; j < n; j++){
@@ -99,7 +112,6 @@ int** Swap(int** M,int* A, int n, int i){
 }
 
 double* answeres(int** M, int* A,int n, int det_m){
-    int x;
     double* Ans = new double [n];
     for(int i = 0; i < n; i++){
         Ans[i] = double(Determinant(Swap(M, A, n, i), n)) / double(det_m);
@@ -115,11 +127,16 @@ int main(){
 
     fin >> n;
 
+    fin.ignore(); // ignoring empty line    
+
     int** M = Matr_Creation(n);
     filling(fin, M, n);
 
-    fin.ignore();
+    fin.ignore(); // ignoring empty line
 
     int* A = Ar_Creation(fin, n);
     out(fout, answeres(M, A, n, Determinant(M, n)), n);
+
+    clearMemory_matr(M, n);
+    clearMemory_ar(A, n);
 }

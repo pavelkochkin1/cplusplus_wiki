@@ -1,8 +1,10 @@
+// README need to create input.txt file.
+// In first line need to write dimension.
+// Ignore one line and write matrix from left part of system.
+// Ignore one more line and write right part of system in a line.
+// Save this file.
 #include <iostream>
-#include <math.h>
-#include <cmath>
 #include <fstream>
-#include <stdio.h>
 using namespace std;
 
 int** Matr_Creation(int n){
@@ -68,11 +70,11 @@ void GetMatr(int** M, int** A, int i, int j, int m) {
 // recursive calculation of the determinant.
 int Determinant(int** M, int n) {
     int i, j, d, k, m;
-    int** A = Matr_Creation(n - 1); // for GetMatr()
+    int** A = Matr_Creation(n - 1); // for func GetMatr()
     j = 0; d = 0;
     k = 1; //(-1) to the i power
     m = n - 1;
-    if (n < 1) cout << "Определитель вычислить невозможно!";
+    if (n < 1) cout << "The determinant cannot be calculated!";
     if (n == 1) {
         d = M[0][0];
         return(d);
@@ -129,14 +131,18 @@ int main(){
 
     fin.ignore(); // ignoring empty line    
 
-    int** M = Matr_Creation(n);
-    filling(fin, M, n);
+    int** Alpaca = Matr_Creation(n);
+    filling(fin, Alpaca, n);
 
     fin.ignore(); // ignoring empty line
 
-    int* A = Ar_Creation(fin, n);
-    out(fout, answeres(M, A, n, Determinant(M, n)), n);
-
-    clearMemory_matr(M, n);
-    clearMemory_ar(A, n);
+    int det_m = Determinant(Alpaca, n);
+    if(det_m != 0){
+        int* Seal = Ar_Creation(fin, n);
+        out(fout, answeres(Alpaca, Seal, n, det_m), n);
+        clearMemory_ar(Seal, n);
+    }else{
+        fout << "The determinant of the system is equal to zero, the Kramer method is not suitable.";
+    }
+    clearMemory_matr(Alpaca, n);
 }

@@ -69,32 +69,32 @@ void GetMatr(int** M, int** A, int i, int j, int m) {
 }
 // recursive calculation of the determinant.
 int Determinant(int** M, int n) {
-    int i, j, d, k, m;
+    int i, j, s, k, m;
     int** A = Matr_Creation(n - 1); // for func GetMatr()
-    j = 0; d = 0;
+    j = 0; s = 0;
     k = 1; //(-1) to the i power
     m = n - 1;
     if (n < 1) cout << "The determinant cannot be calculated!";
     if (n == 1) {
-        d = M[0][0];
-        return(d);
+        s = M[0][0];
+        return(s);
     }
     if (n == 2) {
-        d = M[0][0] * M[1][1] - (M[1][0] * M[0][1]);
-        return(d);
+        s = M[0][0] * M[1][1] - (M[1][0] * M[0][1]);
+        return(s);
     }
     if (n > 2) {
         for (i = 0; i < n; i++) {
             GetMatr(M, A, i, 0, n);
-            d += k * M[i][0] * Determinant(A, m);
+            s += k * M[i][0] * Determinant(A, m);
             k = -k; // power control
         }
     }
-    cout << d << endl; // message in console for debug
+    cout << s << endl; // message in console for debug
 
     clearMemory_matr(A, n);
 
-    return(d);
+    return(s);
 }
 
 int** Swap(int** M,int* A, int n, int i){
@@ -116,7 +116,9 @@ int** Swap(int** M,int* A, int n, int i){
 double* answeres(int** M, int* A,int n, int det_m){
     double* Ans = new double [n];
     for(int i = 0; i < n; i++){
-        Ans[i] = double(Determinant(Swap(M, A, n, i), n)) / double(det_m);
+        int** C = Swap(M, A, n, i);
+        Ans[i] = double(Determinant(C , n)) / double(det_m);
+        clearMemory_matr(C, n);
     }
     return Ans;
 }

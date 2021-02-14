@@ -20,28 +20,8 @@ bool reverse(char* str){
     return true;
 }
 
-bool letter(char ch){
-    char str[80] = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-    bool isTrue = false;
-    for(int i = 0; i < strlen(str); i++){
-        if(ch == str[i]) return true;
-    }
-    return false;
-}
-
-char* word(char* str, char* word){
-    bool isWord = true;
-    int i = 0, j = 0;
-
-    for(i; i < strlen(str); i++){
-        if(str[i] != ' ' or str[i] != ',' or str[i] != '.'){
-            word[j] = str[i];
-            j++;
-        }else{
-            isWord = false;
-        }
-    }
-    return word;
+bool isALetter(char c) {
+    return ((c >= 97 && c <= 122) or (c >= 65 && c <= 90));
 }
 
 int main(){
@@ -170,33 +150,29 @@ int main(){
 
 
     //Eight task
-    char str[80];
-    int count = 0, i = 0, j = 0;
-    char word[80];
-    bool isWord = true, isLetter = true;
-    cout << "Enter your string: "; cin.getline(str, 80);
+    const int n = 100;
+    char str[n];
+    char toFind;
+    cout << "Enter your string: "; cin.getline(str, n);
+    int numOfWords = 0;
 
-    for(i = 0; i < strlen(str); i++){
-        j = 0; isWord = true, isLetter = true;
-        for(i; i < strlen(str) and isWord; i++){
-            if(str[i] != ' ' or str[i] != ',' or str[i] != '.'){
-                word[j] = str[i];
-                j++;
-            }else{
-                isWord = false;
-            }
+    bool isAWord = true;
+
+    for (int i = 0; i < strlen(str); i++){
+        if (str[i] == ' ' or str[i] == '.' or str[i] == ',') {
+            if(isAWord) numOfWords++;
+            //isAWord = true;
         }
-        cout << word << endl;
-        count++;
-        for(int t = 0; t < j and isLetter == true; t++){
-            if(!letter(word[t])){
-                count--;
-                isLetter = false;
-            }
-        }
+
+        if (!isALetter(str[i])) isAWord = false;
+        else isAWord = true;
     }
 
-    cout << endl << "Count of words is " << count;
+
+    if (str[strlen(str) - 1] != ' ' && str[strlen(str) - 1] != '.' && str[strlen(str) - 1] != ',')
+    numOfWords++;
+
+    cout << "Count of words: " << numOfWords;
 
     return 0;
 }

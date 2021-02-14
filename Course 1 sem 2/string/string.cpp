@@ -20,8 +20,12 @@ bool reverse(char* str){
     return true;
 }
 
-bool isALetter(char c) {
-    return ((c >= 97 && c <= 122) or (c >= 65 && c <= 90));
+bool isLetter(char a) {
+    return ((a >= 97 && a <= 122) or (a >= 65 && a <= 90));
+}
+
+bool isSpace(char a) {
+    return (a == ' ' || a == '.' || a == ',' || a =='\0');
 }
 
 int main(){
@@ -152,25 +156,20 @@ int main(){
     //Eight task
     const int n = 100;
     char str[n];
-    char toFind;
-    cout << "Enter your string: "; cin.getline(str, n);
+    cin.getline(str, n);
     int numOfWords = 0;
 
-    bool isAWord = true;
+    bool isWord = isLetter(str[0]);
 
-    for (int i = 0; i < strlen(str); i++){
-        if (str[i] == ' ' or str[i] == '.' or str[i] == ',') {
-            if(isAWord) numOfWords++;
-            //isAWord = true;
+    for (int i = 1; i <= strlen(str); i++) {
+        if (isSpace(str[i])) {
+            if(isWord) numOfWords++;
         }
 
-        if (!isALetter(str[i])) isAWord = false;
-        else isAWord = true;
+        if (!isLetter(str[i])) isWord = false;
+        else if (isSpace(str[i - 1])) isWord = true;
     }
 
-
-    if (str[strlen(str) - 1] != ' ' && str[strlen(str) - 1] != '.' && str[strlen(str) - 1] != ',')
-    numOfWords++;
 
     cout << "Count of words: " << numOfWords;
 

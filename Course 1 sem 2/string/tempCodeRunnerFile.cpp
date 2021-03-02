@@ -1,5 +1,4 @@
-char str[100];
-    // cout << "Enter string: "; cin.getline(str, 100);
-    // for(int i = 0; i < strlen(str); i++){
-    //     cout << str[i] << char(35);
-    // }
+ // char str[100];
+    // int n;
+    // cout << "Enter n: "; cin >> n;
+    // cout << "Final: " << stringRL(n);
